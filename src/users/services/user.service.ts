@@ -10,16 +10,19 @@ export class UserService {
     if (!ObjectId.isValid(id)) {
       throw new NotFoundException('Invalid ID format');
     }
-    const user = this.userRepository.getUserById(id);
+    const user = await this.userRepository.getUserById(id);
     if (!user) throw new NotFoundException('User not found');
-    return user;
+    const { password, ...userWithoutPassword } = user;
+    return userWithoutPassword;
   }
 
   async createUser(user) {
     return this.userRepository.createUser(user);
+    return { message: 'User created successfully' };
   }
 
   async signInUser(user) {
     return this.userRepository.signInUser(user);
+    return { message: 'User successfully logged' };
   }
 }

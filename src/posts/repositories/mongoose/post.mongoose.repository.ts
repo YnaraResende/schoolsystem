@@ -25,7 +25,6 @@ export class PostMongooseRepository implements PostRepository {
     await this.postModel.deleteOne({ _id: id }).exec();
   }
   async searchPosts(keyword: string): Promise<IPost[]> {
-    console.log('aaaaaaaaaaa');
     return this.postModel
       .find({
         $or: [

@@ -15,12 +15,15 @@ export class PostService {
   }
   async createPost(post) {
     return this.postRepository.createPost(post);
+    return { message: 'Post created successfully' };
   }
   async updatePost(id: string, post) {
     return this.postRepository.updatePost(id, post);
+    return { message: 'Post updated successfully!' };
   }
   async deletePost(id: string) {
     return this.postRepository.deletePost(id);
+    return { message: 'Post deleted successfully!' };
   }
 
   async searchPosts(keyword: string) {
